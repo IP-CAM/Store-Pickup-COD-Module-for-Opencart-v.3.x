@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<modification>
+    <name>Disables COD payment option unless store pickup</name>
+    <version>0.1</version>
+    <author>Joe Rothrock</author>
+    <link>https://github.com/akmjoe</link>
+    <code>opencart-store-cod</code>
+    
+    <file path="catalog/model/extension/payment/cod.php">
+        <operation error="skip" info="To disable COD unless store pickup">
+            <search><![CDATA[$method_data = array();]]></search>
+            <add position="before"><![CDATA[if($this->session->data['shipping_method']['code'] != 'pickup.pickup') {
+    $status = false;
+}]]>
+            </add>
+        </operation>
+    </file>
+</modification>
